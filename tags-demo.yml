@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: task-1
+      debug:
+        msg: 'Performed task-1'
+      tags:
+       - task-1
+    - name: task-2
+      debug:
+        msg: 'Performed task-2'
+      tags:
+        - task-2

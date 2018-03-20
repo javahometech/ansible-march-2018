@@ -1,0 +1,12 @@
+---
+- hosts: 172.31.42.162
+  become: True
+  tasks:
+    - name: Install Apache server, docker, git
+      yum:
+        name: "{{item}}"
+        state: present
+      with_items:
+        - httpd
+        - git
+        - docker
