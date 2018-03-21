@@ -1,5 +1,5 @@
 ---
-- hosts: 172.31.42.162
+- hosts: all
   become: True
   tasks:
     - name: Install Apache server
@@ -14,3 +14,14 @@
       service:
         name: httpd
         enabled: True
+    - name: Copy index.html to remote web servers
+      copy:
+       src: index.html
+       dest: /var/www/html/
+      notify:
+        - Restart apache server
+  handlers:
+    - name: Restart apache server
+      service:
+        name: httpd
+        state: restarted
